@@ -52,26 +52,27 @@ public class MaxTimeCombination {
 		}*/
 
 
-		for (int i = 0; i < permutation.size(); i++) {
-			//if (permutation.get(i).get(0) > 0  && permutation.get(i).get(0) < 3 ){
+		   for (int i = 0; i < permutation.size(); i++) {
 			List<Integer> k = permutation.get(i);
-			//System.out.println("Sorted :" + k);
-			int hh = k.get(0)*10 + k.get(1);
-			if (hh < 24) {
-				exists = true;
-				if (hh > h) {
-					h = hh;
-				} 
-			} 
-			int mm = k.get(2)*10 + k.get(3);
-
-			if ( mm < 60) {
-				exists = true;
-				if (mm > m) {
-					m = mm;
-				} 
-			} 
-		}
+			
+			int hh = k.get(0) * 10 + k.get(1);          
+			if (hh < 24)
+			{
+			    if (hh >= h)
+			    {
+			        int mm = k.get(2) * 10 + k.get(3);
+			        if (mm < 60)
+			        {
+			            exists = true;
+			            if (hh > h || mm > m)
+			            {
+			                m = mm;
+			            }
+			            h = hh;
+			        }
+			    }
+			}
+		    }
 
 		return (exists ? String.format("%02d:%02d", h, m) : "NOT POSSIBLE");
 	}
